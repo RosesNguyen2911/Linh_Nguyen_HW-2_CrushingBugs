@@ -50,6 +50,14 @@ function handleDrop(e) {
     this.appendChild(draggedPiece);
 }
 
+  // bug fix #1 - ensure only one piece can be placed per drop zone
+  if (!this.hasChildNodes()) { 
+    this.appendChild(draggedPiece); // If empty, allow piece drop
+} else {
+    console.log("Drop zone already occupied!"); // Prevent multiple pieces from stacking
+}
+// end of bug fix #1
+
 // event listeners
 // add event handling to each button in the collection of buttons, one at a time
 theButtons.forEach(button => button.addEventListener('click', changeBGImage));

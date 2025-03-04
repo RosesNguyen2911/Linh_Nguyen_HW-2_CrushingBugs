@@ -60,12 +60,12 @@ function handleDrop(e) {
     e.preventDefault();
     console.log('dropped something on me');
 
-  // bug fix #1 - ensure only one piece can be placed per drop zone
-  if (!this.hasChildNodes()) { 
-    this.appendChild(draggedPiece); // If empty, allow piece drop
-} else {
-    console.log("Drop zone already occupied!"); // Prevent multiple pieces from stacking
-}
+    // bug fix #1 - ensure only one piece can be placed per drop zone
+    if (!this.hasChildNodes()) { 
+        this.appendChild(draggedPiece); // If empty, allow piece drop
+    } else {
+        console.log("drop zone already occupied!"); // Prevent multiple pieces from stacking
+    }
 }
 // end of bug fix #1
 

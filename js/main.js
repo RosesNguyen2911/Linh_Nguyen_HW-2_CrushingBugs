@@ -59,18 +59,13 @@ function handleDragOver(e) {
 function handleDrop(e) {
     e.preventDefault();
     console.log('dropped something on me');
-	// bug fix #1 should go here, and it's at most 3 lines of JS code
-
-	// this line is going to move the dragged piece from the left side of the board
-	// into whatever drop zone we choose. appendChild means "add element to the container"
-    this.appendChild(draggedPiece);
-}
 
   // bug fix #1 - ensure only one piece can be placed per drop zone
   if (!this.hasChildNodes()) { 
     this.appendChild(draggedPiece); // If empty, allow piece drop
 } else {
     console.log("Drop zone already occupied!"); // Prevent multiple pieces from stacking
+}
 }
 // end of bug fix #1
 

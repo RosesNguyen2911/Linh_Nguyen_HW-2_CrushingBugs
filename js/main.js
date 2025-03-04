@@ -10,22 +10,38 @@ let theButtons = document.querySelectorAll('#buttonHolder img'),
 puzzleBoard = document.querySelector('.puzzle-board'),
 puzzlePieces = document.querySelectorAll('.puzzle-pieces img'),
 dropZones = document.querySelectorAll('.drop-zone'),
-	// store the dragged piece in a global variable
-	// because we need it in the handleDrop function
-    draggedPiece;
+puzzlePiecesContainer = document.querySelector('.puzzle-pieces'), // new - stores the initial puzzle pieces container
+// store the dragged piece in a global variable
+// because we need it in the handleDrop function
+draggedPiece;
 
 // step 3
 // functionality always goes in the middle -> how do we want
 // the app to behave?
 function changeBGImage() {
-	// the `` is a JavaScript template string. It tells the JS enging to evaluate the expression
-	// inside the braces - run that little bit of code. In this case it's just pulling the ID of the
-	// button we clicked on and putting it at the end of the image name (0, 1, 2, 3)
-	// and updating the background-image style of the puzzle board element.
+// the `` is a JavaScript template string. It tells the JS engine to evaluate the expression
+// inside the braces - run that little bit of code. In this case it's just pulling the ID of the
+// button we clicked on and putting it at the end of the image name (0, 1, 2, 3)
+// and updating the background-image style of the puzzle board element.
+puzzleBoard.style.backgroundImage = `url(images/backGround${this.id}.jpg)`;
 
-	// bug fix #2 should go here. it's at most 3 lines of JS code.
-    puzzleBoard.style.backgroundImage = `url(images/backGround${this.id}.jpg)`;
+// bug fix #2 should go here. it's at most 3 lines of JS code
+resetPuzzlePieces();// Call the reset function to clear the board
 }
+
+// bug fix #2 - reset all puzzle pieces when changing background
+function resetPuzzlePieces() {
+console.log("Resetting all puzzle pieces..."); // Debugging - check if function is triggered
+
+dropZones.forEach(zone => {
+    while (zone.firstChild) {
+        puzzlePiecesContainer.appendChild(zone.firstChild); // Move pieces back to the starting area
+    }
+});
+
+console.log("All pieces have been reset!"); // Confirm successful reset
+}
+// end of bug fix #2
 
 function handleStartDrag() {
     console.log('started dragging this piece: ', this);
